@@ -1,29 +1,29 @@
 const { Router, response } = require('express');
 const express = require('express');
 const router = express.Router();
+const categoryController = require('../controller/category-controller')
+const bookController = require('../controller/books-controller')
 
-let users = [];
+//CATEGORY CONTROLLER ROUTES
+router.get('/category',categoryController.getAllCategory);
 
-router.get('/users',(req,res)=>{
-    res.json(users);
-})
-router.post('/users',(req,res)=>{
-    users.push(req.body);
-    res.json(req.body);
-})
+router.post('/category',categoryController.createCategory);
 
-router.put('/users/:id',(req,res)=>{
-    let userIndex = users.findIndex((user)=> user.id ===parseInt(req.params.id));
-    if(userIndex === -1){
-        return res.json({
-            error: 'the given id was not found '
-        })
-    }
-    users[userIndex]['id'] =req.body.id;
-    users[userIndex]['name'] =req.body.name;
-    users[userIndex]['email'] =req.body.email;
-    users[userIndex]['address'] =req.body.address;
-    res.json(req.body);
-})
+router.get('/category/:id', categoryController.getById);
+
+router.put('/category/:id',categoryController.updateCategory);
+
+router.delete('/category/:id',categoryController.deleteCategory);
+
+//BOOKS CONTROLLER ROUTES
+router.get('/book',bookController.getAllbook);
+
+router.post('/book',bookController.createBook);
+
+router.get('/book/:id', bookController.getBookById);
+
+router.put('/book/:id',bookController.updateBook);
+
+router.delete('/bookB/:id',bookController.deleteBook);
 
 module.exports = router;
