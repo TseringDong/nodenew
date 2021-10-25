@@ -1,4 +1,4 @@
-let category = [];
+let category = []; // {ID, TITLE, CATEGORY}
 
 // GET ALL BOOK, REQUEST METHOD: GET
 exports.getAllCategory = (request, response) => {
